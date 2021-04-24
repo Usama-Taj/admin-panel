@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/sidebar.css";
 import { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class SideBar extends Component {
   state = {};
@@ -9,16 +10,52 @@ class SideBar extends Component {
       this.props.display && (
         <ul className="nav flex-column bg-dark text-light">
           <li className="nav-item">
-            <span className="nav-link">Dashboard</span>
+            <NavLink
+              activeStyle={{
+                color: "white",
+              }}
+              exact
+              to="/"
+              className="nav-link"
+            >
+              Dashboard
+            </NavLink>
           </li>
           <li className="nav-item">
-            <span className="nav-link">About Us</span>
+            <NavLink
+              activeStyle={{
+                color: "white",
+              }}
+              exact
+              to="/about"
+              className="nav-link"
+            >
+              About Us
+            </NavLink>
           </li>
           <li className="nav-item">
-            <span className="nav-link">Contact Us</span>
+            <NavLink
+              activeStyle={{
+                color: "white",
+              }}
+              exact
+              to="/contact"
+              className="nav-link"
+            >
+              Contact Us
+            </NavLink>
           </li>
           <li className="nav-item">
-            <span className="nav-link">Help</span>
+            <NavLink
+              activeStyle={{
+                color: "white",
+              }}
+              exact
+              to="/help"
+              className="nav-link"
+            >
+              Help
+            </NavLink>
           </li>
         </ul>
       )

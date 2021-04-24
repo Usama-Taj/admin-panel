@@ -1,8 +1,14 @@
-li span {
-  cursor: pointer;
+li .nav-link {
   font-size: 1rem;
   border-bottom: 1px solid white;
-  padding: 2px;
+  padding: 10px;
+  color: grey;
+}
+li .nav-link:hover {
+  color: white;
+}
+.selected {
+  color: white;
 }
 ul {
   position: fixed;
@@ -10,7 +16,7 @@ ul {
   height: 90vh;
   width: 32vw;
   animation-name: moveInLeft;
-  animation-duration: 0.1s;
+  animation-duration: 0.5s;
 }
 @keyframes moveInLeft {
   0% {
