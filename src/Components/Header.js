@@ -6,9 +6,7 @@ import { Component } from "react";
 class Header extends Component {
   state = { sidebar: true };
   showMenu = () => {
-    this.state.sidebar === false
-      ? this.setState({ sidebar: true })
-      : this.setState({ sidebar: false });
+    this.state.sidebar === false && this.setState({ sidebar: true });
     this.props.sideBar(this.state.sidebar);
   };
   render() {

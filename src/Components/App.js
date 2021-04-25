@@ -1,12 +1,13 @@
 import { Component } from "react";
-import { Box, Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header";
-import SideBar from "./SideBar";
 import Dashboard from "./RouteComponents/Dashboard";
 import AboutUs from "./RouteComponents/AboutUs";
 import ContactUs from "./RouteComponents/ContactUs";
 import Help from "./RouteComponents/Help";
+import SideBar from "./SideBar";
 
 class App extends Component {
   state = { sidebarDisplayed: false };
@@ -14,16 +15,16 @@ class App extends Component {
     this.setState({ sidebarDisplayed: isDisplayed });
     return this.state.sidebarDisplayed;
   };
+  handleClose = () => {
+    this.setState({ sidebarDisplayed: false });
+  };
   render() {
     return (
       <Box>
         <Router>
           <Header sideBar={this.displaySidebar} />
-          <Box>
-            {this.state.sidebarDisplayed && (
-              <SideBar display={this.displaySidebar} />
-            )}
-
+          <Box onClick={this.handleClose}>
+            <SideBar display={this.state.sidebarDisplayed} />
             <Grid
               container
               direction="row"
