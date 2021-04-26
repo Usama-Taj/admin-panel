@@ -1,48 +1,53 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import Dashboard from "./RouteComponents/Dashboard";
-import AboutUs from "./RouteComponents/AboutUs";
-import ContactUs from "./RouteComponents/ContactUs";
+import Customers from "./RouteComponents/Customers";
+import Products from "./RouteComponents/Products";
 import Help from "./RouteComponents/Help";
 import SideBar from "./SideBar";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
-class App extends Component {
-  state = { sidebarDisplayed: false };
-  displaySidebar = (isDisplayed) => {
-    this.setState({ sidebarDisplayed: isDisplayed });
-    return this.state.sidebarDisplayed;
+const useStyles = makeStyles((theme) => ({
+  content: {
+    [theme.breakpoints.up("sm")]: {
+      width: "calc(100% - 240px)",
+      marginLeft: 240,
+    },
+    marginTop: "10vh",
+  },
+}));
+const App = () => {
+  const [isDisplayed, setDisplay] = useState(false);
+  const onDisplay = (display) => {
+    console.log(display);
+    setDisplay(display);
   };
-  handleClose = () => {
-    this.setState({ sidebarDisplayed: false });
-  };
-  render() {
-    return (
-      <Box>
-        <Router>
-          <Header sideBar={this.displaySidebar} />
-          <Box onClick={this.handleClose}>
-            <SideBar display={this.state.sidebarDisplayed} />
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              style={{ marginTop: "60px" }}
-            >
-              <Switch>
-                <Route path="/" exact component={Dashboard} />
-                <Route path="/about" exact component={AboutUs} />
-                <Route path="/contact" exact component={ContactUs} />
-                <Route path="/help" exact component={Help} />
-              </Switch>
-            </Grid>
-          </Box>
-        </Router>
-      </Box>
-    );
-  }
-}
+  // const getDisplay = (display) => display;
+  const classes = useStyles();
+  return (
+    <Box>
+      <Router>
+        {/*NavBar // App BAR*/}
+        {/* <Header onDisplay={onDisplay} /> */}
+        <SideBar />
+        <Box>
+          {/*Drawer*/}
+          {/* <SideBar display={isDisplayed} /> */}
+          <main className={classes.content}>
+            <Switch>
+              <Route path="/" exact component={Dashboard} />
+              <Route path="/customers" exact component={Customers} />
+              <Route path="/products" exact component={Products} />
+              <Route path="/help" exact component={Help} />
+            </Switch>
+          </main>
+        </Box>
+      </Router>
+    </Box>
+  );
+};
 
 export default App;
