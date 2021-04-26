@@ -1,5 +1,4 @@
-import { Component, useState } from "react";
-import Grid from "@material-ui/core/Grid";
+import { useState } from "react";
 import Box from "@material-ui/core/Box";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header";
@@ -19,23 +18,25 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10vh",
   },
 }));
+
 const App = () => {
-  const [isDisplayed, setDisplay] = useState(false);
+  const [displayed, setDisplayed] = useState(false);
   const onDisplay = (display) => {
-    console.log(display);
-    setDisplay(display);
+    setDisplayed(display);
   };
-  // const getDisplay = (display) => display;
   const classes = useStyles();
+  const removeDrawer = () => {
+    setDisplayed(false);
+  };
   return (
     <Box>
       <Router>
         {/*NavBar // App BAR*/}
-        {/* <Header onDisplay={onDisplay} /> */}
-        <SideBar />
+        <Header onDisplay={onDisplay} />
+        <SideBar display={displayed} closeDrawer={removeDrawer} />
         <Box>
           {/*Drawer*/}
-          {/* <SideBar display={isDisplayed} /> */}
+
           <main className={classes.content}>
             <Switch>
               <Route path="/" exact component={Dashboard} />

@@ -1,24 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -46,14 +31,30 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
 }));
 
-const Header = () => {
-  return <div></div>;
+const Header = (props) => {
+  const classes = useStyles();
+  const drawerDisplayed = () => props.onDisplay(true);
+  return (
+    <AppBar position="fixed" className={classes.appBar}>
+      <Toolbar>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          className={classes.menuButton}
+          onClick={drawerDisplayed}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6">Admin Panel</Typography>
+        <IconButton color="inherit" style={{ marginLeft: "auto" }}>
+          <AccountCircleIcon fontSize="large" />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 export default Header;
